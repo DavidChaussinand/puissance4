@@ -1,12 +1,20 @@
-<!doctype html>
-<html lang="fr" class="h-full">
+<!DOCTYPE html>
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Puissance 4</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
-  <body class="h-full bg-slate-950">
-    <div id="root" class="h-full"></div>
-    <script type="module" src="/src/main.jsx"></script>
+  <body>
+    <main class="app">
+      <h1>Puissance 4</h1>
+      <section class="status-bar">
+        <p id="status-message">Tour du joueur : <span id="current-player" class="player-red">Rouge</span></p>
+        <button type="button" id="reset-button" class="reset-button">Recommencer</button>
+      </section>
+      <section id="board" class="board" aria-label="Grille du jeu"></section>
+    </main>
+    <script src="script.js"></script>
   </body>
 </html>
