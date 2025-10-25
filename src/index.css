@@ -14,3 +14,131 @@ body {
 a {
   @apply text-indigo-400 transition hover:text-indigo-300;
 }
+
+.victory-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(129, 140, 248, 0.25), rgba(15, 23, 42, 0.1) 55%, rgba(15, 23, 42, 0));
+  mix-blend-mode: screen;
+  animation: victoryGlow 2.4s ease-in-out infinite;
+}
+
+.victory-burst {
+  position: absolute;
+  width: 26rem;
+  height: 26rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(244, 114, 182, 0.65) 0%, rgba(129, 140, 248, 0.35) 45%, rgba(248, 250, 252, 0));
+  filter: blur(0px);
+  animation: victoryBurst 2.8s ease-out infinite;
+}
+
+.victory-burst--delay {
+  animation-name: victoryBurstSecondary;
+  animation-delay: 1.2s;
+  opacity: 0.85;
+}
+
+.victory-confetti {
+  position: absolute;
+  width: 12px;
+  height: 18px;
+  border-radius: 9999px;
+  opacity: 0;
+  animation: victoryConfetti 3s ease-in infinite;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.35);
+}
+
+.victory-confetti--1 {
+  left: 12%;
+  top: 5%;
+  background: linear-gradient(135deg, #f472b6, #fbbf24);
+  animation-delay: 0s;
+}
+
+.victory-confetti--2 {
+  left: 28%;
+  top: 12%;
+  background: linear-gradient(135deg, #38bdf8, #a855f7);
+  animation-delay: 0.4s;
+}
+
+.victory-confetti--3 {
+  left: 56%;
+  top: 8%;
+  background: linear-gradient(135deg, #facc15, #f472b6);
+  animation-delay: 0.8s;
+}
+
+.victory-confetti--4 {
+  right: 18%;
+  top: 14%;
+  background: linear-gradient(135deg, #34d399, #60a5fa);
+  animation-delay: 1.2s;
+}
+
+.victory-confetti--5 {
+  right: 8%;
+  top: 6%;
+  background: linear-gradient(135deg, #f97316, #f472b6);
+  animation-delay: 1.6s;
+}
+
+@keyframes victoryGlow {
+  0% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.45;
+  }
+  100% {
+    opacity: 0.25;
+  }
+}
+
+@keyframes victoryBurst {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.6;
+  }
+  60% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+@keyframes victoryBurstSecondary {
+  0% {
+    transform: scale(0.35);
+    opacity: 0.6;
+  }
+  60% {
+    transform: scale(0.95);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+}
+
+@keyframes victoryConfetti {
+  0% {
+    transform: translateY(-20%) rotate(-10deg) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(130vh) rotate(220deg) scale(1.1);
+    opacity: 0;
+  }
+}

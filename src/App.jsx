@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 const ROW_COUNT = 6;
 const COLUMN_COUNT = 7;
@@ -71,11 +71,20 @@ function App() {
   const [hoverColumn, setHoverColumn] = useState(null);
   const [lastMove, setLastMove] = useState(null);
   const [winningCells, setWinningCells] = useState([]);
+  const [showCelebration, setShowCelebration] = useState(false);
 
   const winningCellKeys = useMemo(
     () => new Set(winningCells.map((cell) => `${cell.row}-${cell.column}`)),
     [winningCells],
   );
+
+  useEffect(() => {
+    if (winner) {
+      setShowCelebration(true);
+    } else {
+      setShowCelebration(false);
+    }
+  }, [winner]);
 
   const status = useMemo(() => {
     if (winner) {
@@ -144,8 +153,20 @@ function App() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center px-4 py-10">
-      <div className="w-full max-w-4xl">
+    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-10">
+      {showCelebration && (
+        <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
+          <div className="victory-overlay" />
+          <div className="victory-burst" />
+          <div className="victory-burst victory-burst--delay" />
+          <span className="victory-confetti victory-confetti--1" />
+          <span className="victory-confetti victory-confetti--2" />
+          <span className="victory-confetti victory-confetti--3" />
+          <span className="victory-confetti victory-confetti--4" />
+          <span className="victory-confetti victory-confetti--5" />
+        </div>
+      )}
+      <div className="relative z-20 w-full max-w-4xl">
         <header className="text-center">
           <p className="mx-auto mb-4 inline-flex items-center gap-2 rounded-full bg-indigo-500/10 px-4 py-1 text-sm font-semibold uppercase tracking-[0.3em] text-indigo-200">
             Puissance 4
